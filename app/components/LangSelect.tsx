@@ -11,11 +11,17 @@ export default function LangSelect({ onSelect }: LangSelectProps) {
     <div className="flex flex-col items-center justify-center min-h-screen px-6 py-16">
       <div className="text-5xl mb-8 animate-float">🧭</div>
       <h1
-        className="font-serif text-3xl font-bold mb-3 text-center"
+        className="font-serif text-3xl font-bold mb-1 text-center"
         style={{ color: "#e8c98a" }}
       >
-        나의 인생 나침반
+        SYS 인생 항해 점검표
       </h1>
+      <p
+        className="text-base mb-3 text-center"
+        style={{ color: "#d4cfdf" }}
+      >
+        나의 인생 나침반
+      </p>
       <p className="text-sm mb-12 text-center" style={{ color: "#c8c2d8" }}>
         My Life Compass · 私の人生コンパス · 我的人生罗盘
       </p>
