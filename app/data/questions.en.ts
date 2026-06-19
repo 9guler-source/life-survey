@@ -287,7 +287,7 @@ export const questionsEN: Question[] = [
   {
     part: "Part 1 · My Roots",
     section: "D. The Light of Life — Happiness & Gratitude",
-    text: "Right now, if you were to name three things you are 'grateful for':",
+    text: "Right now, if you were to name the one thing you are most .grateful for':",
     options: [
       "A body and mind that are healthy",
       "The people who are beside me",
