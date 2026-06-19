@@ -2,7 +2,15 @@
 
 import { useState, useEffect } from "react";
 import { questions } from "@/app/data/questions";
-import { questionsEN, questionsJA, LangCode, UI } from "@/app/data/i18n";
+import { questionsEN } from "@/app/data/questions.en";
+import { questionsJA } from "@/app/data/questions.ja";
+import { questionsZHHans } from "@/app/data/questions.zh-hans";
+import { questionsZHHant } from "@/app/data/questions.zh-hant";
+import { questionsES } from "@/app/data/questions.es";
+import { questionsFR } from "@/app/data/questions.fr";
+import { questionsDE } from "@/app/data/questions.de";
+import { questionsAR } from "@/app/data/questions.ar";
+import { LangCode, UI } from "@/app/data/i18n";
 
 interface SurveyProps {
   lang: LangCode;
@@ -10,10 +18,17 @@ interface SurveyProps {
 }
 
 function getQuestions(lang: LangCode) {
-  if (lang === "en") return questionsEN;
-  if (lang === "ja") return questionsJA;
-  // 나머지 언어는 한국어 데이터 사용 (추후 번역 추가 가능)
-  return questions;
+  switch (lang) {
+    case "en":      return questionsEN;
+    case "ja":      return questionsJA;
+    case "zh-hans": return questionsZHHans;
+    case "zh-hant": return questionsZHHant;
+    case "es":      return questionsES;
+    case "fr":      return questionsFR;
+    case "de":      return questionsDE;
+    case "ar":      return questionsAR;
+    default:        return questions;
+  }
 }
 
 export default function Survey({ lang, onComplete }: SurveyProps) {
@@ -68,10 +83,7 @@ export default function Survey({ lang, onComplete }: SurveyProps) {
   }, [current, hasAnswer, q.options.length]);
 
   return (
-    <div
-      className="max-w-2xl mx-auto px-6 pb-24"
-      dir={isRTL ? "rtl" : "ltr"}
-    >
+    <div className="max-w-2xl mx-auto px-6 pb-24" dir={isRTL ? "rtl" : "ltr"}>
       {/* 헤더 */}
       <div
         className="sticky top-0 z-10 pt-6 pb-4"
@@ -99,19 +111,14 @@ export default function Survey({ lang, onComplete }: SurveyProps) {
       >
         <div
           className="inline-block text-xs px-3 py-1 rounded-full mb-4"
-          style={{ color: "#c9a96e", background: "rgba(201,169,110,0.12)", border: "1px solid rgba(201,169,110,0.25)", letterSpacing: "0.05em" }}
+          style={{ color: "#c9a96e", background: "rgba(201,169,110,0.12)", border: "1px solid rgba(201,169,110,0.25)" }}
         >
           {q.section}
         </div>
-
-        <div className="text-xs mb-3" style={{ color: "#c8c2d8" }}>
-          Q{current + 1}
-        </div>
-
+        <div className="text-xs mb-3" style={{ color: "#c8c2d8" }}>Q{current + 1}</div>
         <p className="font-serif text-xl font-semibold leading-relaxed mb-8" style={{ color: "#f5f0e8" }}>
           {q.text}
         </p>
-
         <div className="flex flex-col gap-3">
           {q.options.map((opt, i) => {
             const selected = answers[current] === i;
@@ -163,7 +170,6 @@ export default function Survey({ lang, onComplete }: SurveyProps) {
         >
           {t.prev}
         </button>
-
         <button
           onClick={goNext}
           disabled={!hasAnswer}
